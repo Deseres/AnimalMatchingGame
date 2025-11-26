@@ -12,23 +12,31 @@ public partial class MainPage : ContentPage
         PlayAgainButton.IsVisible = false;
 
         List<string> animalEmoji = new()
+    {
+        "🐯", "🐺", "🐵", "🦒", "🦝", "🐮", "🐷", "🐰",
+        "🐸", "🦁", "🐗", "🦓", "🐻", "🐶", "🐼", "🐨",
+        "🙈", "🙉", "🙊", "🦊", "🐭", "🐹", "🐲", "🐔"
+    };
+        List<string> gameEmoji = new();
+
+        for (int i = 0; i <8;  i++)
         {
-            "🐯", "🐯",
-            "🐺", "🐺",
-            "🐵", "🐵",
-            "🦒", "🦒",
-            "🦝", "🦝",
-            "🐮", "🐮",
-            "🐷", "🐷",
-            "🐰", "🐰",
-        };
+            int index = Random.Shared.Next(animalEmoji.Count);
+
+            string animal = animalEmoji[index];
+
+            gameEmoji.Add(animal);
+            gameEmoji.Add(animal);
+
+            animalEmoji.RemoveAt(index);
+        }
 
         foreach (var button in AnimalButtons.Children.OfType<Button>())
         {
-            int index = Random.Shared.Next(animalEmoji.Count);
-            string nextEmoji = animalEmoji[index];
+            int index = Random.Shared.Next(gameEmoji.Count);
+            string nextEmoji = gameEmoji[index];
             button.Text = nextEmoji;
-            animalEmoji.RemoveAt(index);
+            gameEmoji.RemoveAt(index);
         }
         Dispatcher.StartTimer(TimeSpan.FromSeconds(.1), TimerTick);
         
