@@ -31,9 +31,11 @@ public partial class MainPage : ContentPage
             animalEmoji.RemoveAt(index);
         }
         Dispatcher.StartTimer(TimeSpan.FromSeconds(.1), TimerTick);
+        
     }
-
     int tenthOfSecondsLeft = 100;
+    int bestResult = 0;
+
     private bool TimerTick()
     {
         if (!this.IsLoaded) return false;
@@ -91,14 +93,12 @@ public partial class MainPage : ContentPage
                 matchesFound = 0;
                 AnimalButtons.IsVisible = false;
                 PlayAgainButton.IsVisible = true;
+                if (tenthOfSecondsLeft > bestResult)
+                {
+                    bestResult = tenthOfSecondsLeft;
+                }
+                BestResultLabel.Text = "Best result: " + (bestResult / 10F).ToString("0.0s");
             }
-        }
-        if (matchesFound == 8)
-        {
-            matchesFound = 0;
-            AnimalButtons.IsVisible = false;
-            PlayAgainButton.IsVisible = true;
-            
         }
     }
 }
