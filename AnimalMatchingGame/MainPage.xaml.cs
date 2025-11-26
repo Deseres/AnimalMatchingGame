@@ -33,22 +33,27 @@ public partial class MainPage : ContentPage
         Dispatcher.StartTimer(TimeSpan.FromSeconds(.1), TimerTick);
     }
 
-    int tenthOfSecondsElapsed = 0;
+    int tenthOfSecondsLeft = 100;
     private bool TimerTick()
     {
         if (!this.IsLoaded) return false;
 
-        tenthOfSecondsElapsed++;
+        tenthOfSecondsLeft--;
 
-        TimeElapsed.Text = "Time elapsed: " + (tenthOfSecondsElapsed / 10F).ToString("0.0s");
+        TimeLeft.Text = "Time left: " + (tenthOfSecondsLeft / 10F).ToString("0.0s");
 
         if (PlayAgainButton.IsVisible)
         {
-            tenthOfSecondsElapsed = 0;
+            tenthOfSecondsLeft = 100;
             return false;
         }
+        if (tenthOfSecondsLeft == 0)
+        {
+            matchesFound = 0;
+            AnimalButtons.IsVisible = false;
+            PlayAgainButton.IsVisible = true;
+        }
         return true;
-
 
         throw new NotImplementedException();
     }

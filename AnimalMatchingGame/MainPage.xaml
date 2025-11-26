@@ -9,7 +9,7 @@
             Spacing="25">
 
             <Button x:Name ="PlayAgainButton" Text="Play again?" FontSize="Large" Clicked="PlayAgainButton_Clicked" />
-            <Label x:Name ="TimeElapsed"  Text="Time Elapsed: 0.0 seconds" FontSize="Large" />
+            <Label x:Name ="TimeLeft"  Text="Time left: 10.0 seconds" FontSize="Large" />
             <FlexLayout x:Name="AnimalButtons" Wrap="Wrap" MaximumWidthRequest="400" IsVisible="false">
                 <Button HeightRequest="100" WidthRequest="100" FontSize="60" BackgroundColor="#ADD8E6" BorderColor="#000000" BorderWidth="1"
                         Clicked="AnimalButton_Clicked"/>
